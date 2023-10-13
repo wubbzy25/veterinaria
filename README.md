@@ -1,73 +1,113 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Veterinaria API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Bienvenido a la documentación de la API de Veterinaria. Esta API proporciona acceso a la gestión de animales y servicios de autenticación. A continuación, se describen los endpoints y servicios disponibles.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Endpoints
 
-## Description
+### Crear un Animal
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Este endpoint te permite crear un nuevo animal en la base de datos.
 
-## Installation
+- **URL**: `POST /animals`
+- **Parámetros de la solicitud**:
+  - `AnimalDto` (Cuerpo de la solicitud): Un objeto que describe las propiedades del animal a crear. Debe incluir los siguientes campos:
+    - `name` (string): El nombre del animal.
+    - `Especie` (string): La especie del animal.
+    - `Raza` (string): La raza del animal.
+    - `Genero` (string): El género del animal.
+    - `Edad` (number): La edad del animal.
+- **Respuesta exitosa**:
+  - Código de estado: 200 (OK)
+  - Cuerpo de la respuesta: El animal creado.
+- **Respuesta de error**:
+  - Código de estado: 404 (Not Found)
+  - Error al crear el usuario
 
-```bash
-$ pnpm install
-```
+### Listar Animales
 
-## Running the app
+Este endpoint te permite obtener una lista de todos los animales en la base de datos.
 
-```bash
-# development
-$ pnpm run start
+- **URL**: `GET /animals`
+- **Respuesta exitosa**:
+  - Código de estado: 200 (OK)
+  - Cuerpo de la respuesta: Una lista de animales.
 
-# watch mode
-$ pnpm run start:dev
+### Obtener un Animal por ID
 
-# production mode
-$ pnpm run start:prod
-```
+Este endpoint te permite obtener los detalles de un animal según su ID.
 
-## Test
+- **URL**: `GET /animals/:id`
+- **Parámetros de la solicitud**:
+  - `id` (Parámetro de ruta): El ID del animal.
+- **Respuesta exitosa**:
+  - Código de estado: 200 (OK)
+  - Cuerpo de la respuesta: Los detalles del animal.
 
-```bash
-# unit tests
-$ pnpm run test
+### Actualizar un Animal
 
-# e2e tests
-$ pnpm run test:e2e
+Este endpoint te permite actualizar los detalles de un animal según su ID.
 
-# test coverage
-$ pnpm run test:cov
-```
+- **URL**: `PATCH /animals/:id`
+- **Parámetros de la solicitud**:
+  - `id` (Parámetro de ruta): El ID del animal.
+  - `AnimalDto` (Cuerpo de la solicitud): Un objeto que describe las propiedades del animal a crear. Debe incluir los siguientes campos:
+    - `name` (string): El nombre del animal.
+    - `Especie` (string): La especie del animal.
+    - `Raza` (string): La raza del animal.
+    - `Genero` (string): El género del animal.
+    - `Edad` (number): La edad del animal.
+- **Respuesta exitosa**:
+  - Código de estado: 200 (OK)
+  - Cuerpo de la respuesta: "Animal Actualizado" si la actualización fue exitosa.
 
-## Support
+### Eliminar un Animal
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Este endpoint te permite eliminar un animal según su ID.
 
-## Stay in touch
+- **URL**: `DELETE /animals/:id`
+- **Parámetros de la solicitud**:
+  - `id` (Parámetro de ruta): El ID del animal.
+- **Respuesta exitosa**:
+  - Código de estado: 202 (Accepted)
+  - Cuerpo de la respuesta: "Animal Eliminado" si la eliminación fue exitosa.
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### Registro de Usuario
 
-## License
+Este endpoint te permite registrar un nuevo usuario en la base de datos.
 
-Nest is [MIT licensed](LICENSE).
+- **URL**: `POST /register`
+- **Parámetros de la solicitud**:
+  - `RegisterUserDto` (Cuerpo de la solicitud): Un objeto que describe las propiedades del usuario a registrar. Debe incluir los siguientes campos:
+    - `gmail` (string): El correo electrónico del usuario.
+    - `password` (string): La contraseña del usuario.
+    - `Role` (string): El rol del usuario.
+- **Respuesta exitosa**:
+  - Código de estado: 200 (OK)
+  - Cuerpo de la respuesta: El usuario registrado.
+- **Respuesta de error**:
+  - Código de estado: 400 (Bad Request)
+  - Cuerpo de la respuesta: "Usuario Duplicado" si se encuentra un usuario con el mismo correo electrónico.
+
+### Inicio de Sesión
+
+Este endpoint te permite iniciar sesión como usuario registrado.
+
+- **URL**: `POST /login`
+- **Parámetros de la solicitud**:
+  - `LoginUserDto` (Cuerpo de la solicitud): Un objeto que describe las credenciales de inicio de sesión del usuario. Debe incluir los siguientes campos:
+    - `gmail` (string): El correo electrónico del usuario.
+    - `password` (string): La contraseña del usuario.
+- **Respuesta exitosa**:
+  - Código de estado: 200 (OK)
+  - Cuerpo de la respuesta: Un mensaje de "Logeado Exitosamente" y un token de acceso.
+- **Respuesta de error**:
+  - Código de estado: 400 (Bad Request)
+  - Cuerpo de la respuesta: "La contraseña no es correcta" si la contraseña no coincide con el usuario.
+  - Código de estado: 404 (Not Found)
+  - Cuerpo de la respuesta: "El correo electrónico no existe o está incorrecto" si el correo electrónico no se encuentra en la base de datos.
+
+Proporciona detalles sobre tu servicio de inicio de sesión y cómo los usuarios pueden utilizarlo.
+
+Asegúrate de personalizar esta documentación con los detalles específicos de tu proyecto y agregar más información si es necesario.
+
+¡Gracias por utilizar la API de Veterinaria!

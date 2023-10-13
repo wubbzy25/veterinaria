@@ -26,7 +26,6 @@ export class AnimalsService {
     if (UserFound) {
       const newAnimal = this.animalRepository.create(animal);
       await this.animalRepository.save(newAnimal);
-      return;
     }
 
     throw new HttpException('Usuario no encontrado', HttpStatus.NOT_FOUND);
@@ -62,7 +61,8 @@ export class AnimalsService {
     Object.assign(animal, updateAnimalDto);
 
     // Guardar los cambios en la base de datos
-    return this.animalRepository.save(animal);
+   await this.animalRepository.save(animal);
+    return new HttpException('Animal Actualizado', HttpStatus);
   }
 
   async remove(id: number): Promise<void> {
@@ -80,5 +80,6 @@ export class AnimalsService {
 
     // Eliminar el animal de la base de datos
     await this.animalRepository.remove(animal);
+    return new HttpException('Animal Eliminado', HttpStatus.ACCEPTED);
   }
 }

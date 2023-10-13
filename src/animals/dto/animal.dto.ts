@@ -4,5 +4,4 @@ export class AnimalDto {
   Raza: string;
   Genero: string;
   Edad: number;
-  ownerId: number;
 }
