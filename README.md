@@ -106,8 +106,3 @@ Este endpoint te permite iniciar sesión como usuario registrado.
   - Código de estado: 404 (Not Found)
   - Cuerpo de la respuesta: "El correo electrónico no existe o está incorrecto" si el correo electrónico no se encuentra en la base de datos.
 
-Proporciona detalles sobre tu servicio de inicio de sesión y cómo los usuarios pueden utilizarlo.
-
-Asegúrate de personalizar esta documentación con los detalles específicos de tu proyecto y agregar más información si es necesario.
-
-¡Gracias por utilizar la API de Veterinaria!
